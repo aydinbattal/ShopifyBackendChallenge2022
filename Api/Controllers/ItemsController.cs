@@ -57,5 +57,21 @@ namespace Api.Controllers
 
             return Ok("Item is successfully removed");
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateItem(string id, [FromBody] Item newItem)
+        {
+
+            var item = await _context.Items
+                .FindAsync(new Guid(id));
+
+            if (newItem.Name != null)
+                item.Name = newItem.Name;
+            if (newItem.Amount != 0)
+                item.Amount = newItem.Amount;
+
+            await _context.SaveChangesAsync();
+            return Ok(item);
+        }
     }
 }
