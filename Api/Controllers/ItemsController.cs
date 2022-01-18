@@ -45,5 +45,17 @@ namespace Api.Controllers
             await _context.SaveChangesAsync();
             return Ok(newItem);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItem(string id)
+        {
+            var item = await _context.Items
+                .FindAsync(new Guid(id));
+
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+
+            return Ok("Item is successfully removed");
+        }
     }
 }
