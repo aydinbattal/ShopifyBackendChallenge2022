@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Models.Entities;
+using Api.Models.Helpers;
 using Api.Models.Persistence;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
@@ -72,6 +74,24 @@ namespace Api.Controllers
 
             await _context.SaveChangesAsync();
             return Ok(item);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetItems([FromQuery] int pageNumber)
+        {
+            int pageSize = 10;
+
+            //if nothing provided in query, return page 1
+            if (pageNumber == 0)
+                pageNumber = 1;
+
+            var totalRecords = await _context.Items.CountAsync();
+
+            var items = _context.Items.Skip((pageNumber - 1) * pageSize).Take(pageSize).OrderBy(x => x.ShipmentDate);
+
+            var response = ResponseHelper<Item>.GetPagedResponse("/api/items?", items, pageNumber, pageSize, totalRecords);
+
+            return Ok(response);
         }
     }
 }
