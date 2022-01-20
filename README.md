@@ -17,3 +17,22 @@
 5. Use "git clone https://github.com/aydinbattal/ShopifyBackendChallenge2022.git" command to clone the repository
 6. Make sure you are inside the project folder then run "dotnet run -p .\Api\" command
 
+### API Endpoints
+These can be tested using Postman
+
+##ItemsController
+* Create inventory items:
+POST - http://localhost:5000/api/items/ 
+
+```json
+{
+    "name": "Pixel 6 Pro",
+    "amount": 18,
+    "inventories": [
+        {
+            "name": "Google Phones"
+        }
+    ]
+}
+```
+
