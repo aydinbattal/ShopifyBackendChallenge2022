@@ -20,10 +20,12 @@
 ### API Endpoints
 These can be tested using Postman
 
-##ItemsController
-* Create inventory items:
+## ItemsController
+* Create inventory item:
+URL:
 POST - http://localhost:5000/api/items/ 
 
+Body:
 ```json
 {
     "name": "Pixel 6 Pro",
@@ -35,4 +37,42 @@ POST - http://localhost:5000/api/items/
     ]
 }
 ```
+
+* Delete inventory item:
+URL:
+DELETE - http://localhost:5000/api/items/{id} 
+
+* View a list of inventory items:
+URL:
+GET - http://localhost:5000/api/items
+
+* Edit inventory item:
+URL:
+PUT - http://localhost:5000/api/items/{id}
+
+Body:
+```json
+{
+    "amount": 3
+}
+```
+
+## LocationsController
+* Create warehouse/location and assign inventory to it:
+URL: 
+POST - http://localhost:5000/api/locations/
+
+Body:
+```json
+{
+    "name": "Hamilton",
+    "address": "12 Frost St",
+    "inventories": [
+        {
+            "name": "iPhones"
+        }
+    ]
+}
+```
+
 
