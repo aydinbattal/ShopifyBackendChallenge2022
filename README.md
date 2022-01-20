@@ -106,6 +106,10 @@ URL:
 
 POST - http://localhost:5000/api/locations/
 
+Header Key: Content-Type
+
+Header Value: application/json
+
 Body:
 ```json
 {
