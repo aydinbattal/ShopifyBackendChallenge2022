@@ -21,7 +21,7 @@
 These endpoints can be tested using Postman (https://www.postman.com/downloads/)
 
 ### ItemsController
-###### Create inventory item
+#### Create inventory item
 
 URL:
 
@@ -40,19 +40,19 @@ Body:
 }
 ```
 
-###### Delete inventory item
+#### Delete inventory item
 
 URL:
 
 DELETE - http://localhost:5000/api/items/{id} 
 
-###### View a list of inventory items
+#### View a list of inventory items
 
 URL:
 
 GET - http://localhost:5000/api/items
 
-###### Edit inventory item
+#### Edit inventory item
 
 URL:
 
@@ -66,7 +66,7 @@ Body:
 ```
 
 ### LocationsController
-###### Create warehouse/location and assign inventory to it
+#### Create warehouse/location and assign inventory to it
 
 URL: 
 
