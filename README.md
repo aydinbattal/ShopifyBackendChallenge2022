@@ -23,11 +23,11 @@ These endpoints can be tested using Postman (https://www.postman.com/downloads/)
 ## ItemsController
 # Create inventory item
 
-* URL:
+URL:
 
 POST - http://localhost:5000/api/items/ 
 
-* Body:
+Body:
 ```json
 {
     "name": "Pixel 6 Pro",
