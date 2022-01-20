@@ -18,14 +18,16 @@
 6. Make sure you are inside the project folder then run "dotnet run -p .\Api\" command
 
 ### API Endpoints
-These can be tested using Postman
+These endpoints can be tested using Postman (https://www.postman.com/downloads/)
 
 ## ItemsController
-* Create inventory item:
-URL:
+# Create inventory item
+
+* URL:
+
 POST - http://localhost:5000/api/items/ 
 
-Body:
+* Body:
 ```json
 {
     "name": "Pixel 6 Pro",
