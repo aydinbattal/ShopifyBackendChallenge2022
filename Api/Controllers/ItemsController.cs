@@ -24,7 +24,7 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateItem([FromBody] Item newItem)
         {
-            var items = _context.Items;
+            var items = _context.Items.Include(x => x.Inventories);
             foreach (var i in items)
             {
                 if (i.Name == newItem.Name)
@@ -43,9 +43,29 @@ namespace Api.Controllers
 
             newItem.ShipmentDate = DateTime.Now;
 
+            var tempInventories = new List<Inventory>();
+            foreach (var i in newItem.Inventories)
+            {
+                var inventoryInDb = _context.Inventories.Include(x => x.Items).SingleOrDefault(x => x.Name.ToLower().Equals(i.Name.ToLower()));
+                if (inventoryInDb != null)
+                {
+                    tempInventories.Add(inventoryInDb);
+                }
+                else
+                {
+                    var newInventory = new Inventory
+                    {
+                        Name = i.Name,
+                    };
+                    tempInventories.Add(newInventory);
+                }
+            }
+
+            newItem.Inventories = tempInventories;
+
             await _context.Items.AddAsync(newItem);
             await _context.SaveChangesAsync();
-            return Ok(newItem);
+            return Ok("Item is successfully created");
         }
 
         [HttpDelete("{id}")]
@@ -73,7 +93,7 @@ namespace Api.Controllers
                 item.Amount = newItem.Amount;
 
             await _context.SaveChangesAsync();
-            return Ok(item);
+            return Ok("Item is successfully updated");
         }
 
         [HttpGet]

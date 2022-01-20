@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace Api.Models.Entities
 {
-    public class Item
+    public class Location
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public int Amount { get; set; }
-        public DateTime ShipmentDate { get; set; }
 
+        public string Address { get; set; }
         public List<Inventory> Inventories { get; set; }
     }
 }
